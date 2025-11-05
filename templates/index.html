@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+
+<body>
+    <header class="site-header">
+    <div class="container">
+      <div class="logo">
+        <a href="https://womenceoperu.org">
+          <img src="https://womenceoperu.org/wp-content/uploads/2024/10/wceo-peru-logo-web-1.png" 
+              alt="Women CEO Perú" 
+              class="logo-img">
+        </a>
+      </div>
+
+      <nav class="main-nav">
+        <ul>
+          <li><a href="#">COMUNIDAD</a></li>
+          <li><a href="#">REPOSITORIO</a></li>
+          <li><a href="#">FORMACIÓN</a></li>
+          <li><a href="#">30% AL 2030</a></li>
+          <li><a href="#">PODCAST</a></li>
+        </ul>
+      </nav>
+
+      <div class="header-right">
+        <a href="https://womenceoperu.org/boletin/" class="btn-boletin">BOLETÍN</a>
+        <div class="social-icons">
+          <a href="https://www.facebook.com/womenceoperu" target="_blank"><i class="fab fa-facebook-f"></i></a>
+          <a href="https://www.linkedin.com/company/womenceoperú" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+          <a href="https://www.youtube.com/@womenceoperu7025" target="_blank"><i class="fab fa-youtube"></i></a>
+          <a href="https://www.instagram.com/womenceoperu" target="_blank"><i class="fab fa-instagram"></i></a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+
+  <section class="hero-section">
+      <div class="hero-container">
+          <!-- Logo pequeño -->
+          <div class="program-logo">
+              <img src="{{ url_for('static', filename='img/CeoPeru.png') }}" alt="Women CEO Perú">
+              <h3>Women in <span class="highlight">Career</span></h3>
+          </div>
+
+          <!-- Texto principal -->
+          <div class="hero-content">
+              <h1>Regístrate en nuestro <span class="highlight">Banco de Perfiles</span></h1>
+              <p>Conecta con oportunidades de liderazgo, directorios y redes exclusivas para mujeres ejecutivas.</p>
+              <a href="/registro" class="btn-register">REGÍSTRATE AQUÍ</a>
+          </div>
+      </div>
+  </section>
+</body>
+
+</html>
