@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hunters</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/stylesHunter.css') }}">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700&display=swap" rel="stylesheet">
+  <script src="https://kit.fontawesome.com/a2b4c12345.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+  <header class="site-header">
+    <div class="container">
+      <div class="logo">
+        <a href="#">
+          <img src="{{ url_for('static', filename='img/CeoPeru.png') }}" alt="Hunters" class="logo-img">
+        </a>
+      </div>
+
+      <nav class="main-nav">
+        <ul>
+          <li><a href="#">Comunidad</a></li>
+          <li><a href="#">Repositorio</a></li>
+          <li><a href="#">Formación</a></li>
+          <li><a href="#">Objetivos</a></li>
+          <li><a href="#">Podcast</a></li>
+        </ul>
+      </nav>
+
+      <div class="header-right">
+        <a href="#" class="btn-boletin">Boletín</a>
+        <div class="social-icons">
+          <a href="#" target="_blank"><i class="fab fa-facebook-f"></i></a>
+          <a href="#" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+          <a href="#" target="_blank"><i class="fab fa-youtube"></i></a>
+          <a href="#" target="_blank"><i class="fab fa-instagram"></i></a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <section class="hero-section">
+    <div class="hero-container">
+      <div class="program-logo">
+        <img src="{{ url_for('static', filename='img/CeoPeru.png') }}" alt="Hunters">
+        <h3>Hunters <span class="highlight">Community</span></h3>
+      </div>
+
+      <div class="hero-content">
+        <h1>Únete a nuestro <span class="highlight">Banco de Talentos</span></h1>
+        <p>Conecta con prospectos, impulsa tu búsqueda y sé parte de una red de líderes visionarios.</p>
+        <a href="/hunters/dashboard" class="btn-register">Ingresa Aquí</a>
+      </div>
+    </div>
+  </section>
+</body>
+
+</html>

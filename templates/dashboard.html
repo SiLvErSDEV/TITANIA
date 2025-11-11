@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard Hunters</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(135deg, rgba(92, 75, 153, 0.85), rgba(179, 165, 236, 0.85)),
+                  url('{{ url_for("static", filename="img/fondo-hunters.jpg") }}') center/cover no-repeat;
+      background-attachment: fixed;
+      min-height: 100vh;
+      margin: 0;
+      color: #2e2a47;
+    }
+
+    main {
+      margin-top: 120px;
+      padding: 40px 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    h1 {
+      color: white;
+      text-align: center;
+      font-size: 36px;
+      margin-bottom: 30px;
+      letter-spacing: 1px;
+    }
+
+    /* ==== Buscador ==== */
+    .search-box {
+      width: 90%;
+      max-width: 500px;
+      margin-bottom: 25px;
+      display: flex;
+      justify-content: center;
+    }
+
+    .search-box input {
+      width: 100%;
+      padding: 12px 18px;
+      border-radius: 50px;
+      border: none;
+      outline: none;
+      font-size: 15px;
+      box-shadow: 0 4px 10px rgba(92, 75, 153, 0.2);
+    }
+
+    /* ==== Tabla ==== */
+    .table-container {
+      width: 90%;
+      max-width: 1200px;
+      overflow-x: auto;
+      background: white;
+      border-radius: 16px;
+      box-shadow: 0 8px 25px rgba(92, 75, 153, 0.25);
+      padding: 20px;
+    }
+
+    .data-table {
+      width: 100%;
+      border-collapse: collapse;
+      min-width: 800px;
+      font-size: 14px;
+    }
+
+    .data-table th {
+      background-color: #5c4b99;
+      color: white;
+      text-transform: uppercase;
+      padding: 12px;
+      white-space: nowrap;
+      cursor: pointer;
+      user-select: none;
+      position: relative;
+    }
+
+    .data-table th:hover {
+      background-color: #7263b8;
+    }
+
+    .data-table td {
+      padding: 10px;
+      border-bottom: 1px solid #d3d1f2;
+      font-size: 14px;
+    }
+
+    .data-table tr:nth-child(even) {
+      background-color: #f5f3fb;
+    }
+
+    .data-table tr:hover {
+      background-color: #eae6f8;
+      transition: background-color 0.2s ease;
+    }
+
+    /* ==== Indicadores de orden ==== */
+    .data-table th::after {
+      content: " ⇅";
+      font-size: 12px;
+      opacity: 0.4;
+    }
+    .data-table th.asc::after {
+      content: " ▲";
+      opacity: 1;
+    }
+    .data-table th.desc::after {
+      content: " ▼";
+      opacity: 1;
+    }
+
+    /* ==== Icono carnet ==== */
+    .icon-col {
+      text-align: center;
+      cursor: pointer;
+      color: #5c4b99;
+      font-size: 18px;
+    }
+    .icon-col:hover {
+      color: #8a7dd9;
+    }
+
+    /* ==== Modal resumen ==== */
+    .modal {
+      display: none;
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.5);
+      justify-content: center;
+      align-items: center;
+      z-index: 2000;
+    }
+
+    .modal-content {
+      background: white;
+      border-radius: 20px;
+      padding: 30px;
+      width: 90%;
+      max-width: 400px;
+      box-shadow: 0 8px 30px rgba(92, 75, 153, 0.4);
+      text-align: center;
+      position: relative;
+    }
+
+    .modal-content img {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 3px solid #d3d1f2;
+      margin-bottom: 15px;
+    }
+
+    .modal-content h2 {
+      color: #5c4b99;
+      font-size: 22px;
+      margin-bottom: 10px;
+    }
+
+    .modal-content p {
+      margin: 6px 0;
+      color: #3b3863;
+    }
+
+    .close-btn {
+      position: absolute;
+      top: 10px;
+      right: 15px;
+      font-size: 20px;
+      cursor: pointer;
+      color: #5c4b99;
+    }
+
+    @media (max-width: 768px) {
+      h1 { font-size: 28px; }
+      .table-container { width: 95%; }
+    }
+  </style>
+</head>
+
+<body>
+  <header class="site-header">
+    <div class="container">
+      <div class="logo">
+        <a href="/hunters/">
+          <img src="{{ url_for('static', filename='img/CeoPeru.png') }}" alt="Hunters" class="logo-img">
+        </a>
+      </div>
+      <nav class="main-nav">
+        <ul>
+          <li><a href="/hunters/">Inicio</a></li>
+          <li><a href="/hunters/registro">Registro</a></li>
+          <li><a href="/hunters/dashboard">Dashboard</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <h1>Últimos Registros</h1>
+
+    <!-- Buscador -->
+    <div class="search-box">
+      <input type="text" id="searchInput" placeholder="🔍 Buscar en la tabla...">
+    </div>
+
+    <div class="table-container">
+      {{ table_html|safe }}
+    </div>
+  </main>
+
+  <!-- Modal -->
+  <div class="modal" id="summaryModal">
+    <div class="modal-content">
+      <span class="close-btn" id="closeModal">&times;</span>
+      <img src="{{ url_for('static', filename='img/user-placeholder.png') }}" alt="Foto participante">
+      <h2 id="modalName"></h2>
+      <p><strong>Correo:</strong> <span id="modalEmail"></span></p>
+      <p><strong>Carrera:</strong> <span id="modalCareer"></span></p>
+    </div>
+  </div>
+
+  <script>
+    // === FILTRO DE BÚSQUEDA ===
+    const searchInput = document.getElementById("searchInput");
+    searchInput.addEventListener("keyup", function() {
+      const filter = searchInput.value.toLowerCase();
+      const rows = document.querySelectorAll(".data-table tbody tr");
+      rows.forEach(row => {
+        const text = row.textContent.toLowerCase();
+        row.style.display = text.includes(filter) ? "" : "none";
+      });
+    });
+
+    // === ORDENAMIENTO ===
+    document.querySelectorAll(".data-table th").forEach((header, index) => {
+      header.addEventListener("click", () => {
+        const table = header.closest("table");
+        const tbody = table.querySelector("tbody");
+        const rows = Array.from(tbody.querySelectorAll("tr"));
+        const isAsc = !header.classList.contains("asc");
+        table.querySelectorAll("th").forEach(th => th.classList.remove("asc", "desc"));
+        header.classList.toggle("asc", isAsc);
+        header.classList.toggle("desc", !isAsc);
+
+        rows.sort((a, b) => {
+          const cellA = a.children[index].innerText.toLowerCase();
+          const cellB = b.children[index].innerText.toLowerCase();
+          return isAsc ? cellA.localeCompare(cellB) : cellB.localeCompare(cellA);
+        });
+        rows.forEach(row => tbody.appendChild(row));
+      });
+    });
+
+    // === MODAL DE CARNET ===
+    const modal = document.getElementById("summaryModal");
+    const closeModal = document.getElementById("closeModal");
+    closeModal.onclick = () => (modal.style.display = "none");
+    window.onclick = e => { if (e.target === modal) modal.style.display = "none"; };
+
+    document.querySelectorAll(".icon-col").forEach(icon => {
+      icon.addEventListener("click", () => {
+        const row = icon.closest("tr");
+        const lastName = row.children[4]?.innerText || "";
+        const firstName = row.children[3]?.innerText || "";
+        const email = row.children[8]?.innerText || "";
+        const career = row.children[10]?.innerText || "";
+
+        document.getElementById("modalName").innerText = `${firstName} ${lastName}`;
+        document.getElementById("modalEmail").innerText = email;
+        document.getElementById("modalCareer").innerText = career;
+        modal.style.display = "flex";
+      });
+    });
+  </script>
+</body>
+</html>
