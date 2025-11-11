@@ -1,0 +1,234 @@
+/* ===== ESTILO GENERAL ===== */
+body {
+  font-family: 'Outfit', sans-serif;
+  margin: 0;
+  background-color: #f9f8ff;
+  color: #2e2a47;
+}
+
+/* ===== HEADER ===== */
+.site-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background: white;
+  box-shadow: 0 2px 10px rgba(92, 75, 153, 0.2);
+  z-index: 1000;
+  padding: 15px 0;
+  transition: all 0.3s ease;
+}
+
+.site-header .container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* ===== LOGO ===== */
+.logo-img {
+  height: 50px;
+  width: auto;
+}
+
+/* ===== MENÚ PRINCIPAL ===== */
+.main-nav ul {
+  list-style: none;
+  display: flex;
+  gap: 30px;
+  margin: 0;
+  padding: 0;
+}
+
+.main-nav a {
+  text-decoration: none;
+  color: #5c4b99;
+  font-weight: 600;
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  position: relative;
+  transition: color 0.3s ease;
+}
+
+.main-nav a::after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 2px;
+  bottom: -6px;
+  left: 0;
+  background-color: #b4aee8;
+  transition: width 0.3s ease;
+}
+
+.main-nav a:hover {
+  color: #b4aee8;
+}
+
+.main-nav a:hover::after {
+  width: 100%;
+}
+
+/* ===== BOTÓN BOLETÍN ===== */
+.btn-boletin {
+  display: inline-block;
+  padding: 8px 20px;
+  border: 2px solid #5c4b99;
+  border-radius: 30px;
+  color: #5c4b99;
+  font-weight: 600;
+  font-size: 14px;
+  text-decoration: none;
+  text-transform: uppercase;
+  transition: all 0.3s ease;
+}
+
+.btn-boletin:hover {
+  background-color: #5c4b99;
+  color: white;
+  border-color: #5c4b99;
+}
+
+/* ===== ICONOS SOCIALES ===== */
+.social-icons {
+  display: flex;
+  gap: 15px;
+  margin-left: 20px;
+}
+
+.social-icons a {
+  color: #5c4b99;
+  font-size: 18px;
+  transition: color 0.3s ease;
+}
+
+.social-icons a:hover {
+  color: #b4aee8;
+}
+
+/* ===== HERO SECTION ===== */
+.hero-section {
+  position: relative;
+  height: 100vh;
+  min-height: 600px;
+  background: url('../img/fondo-hunters.jpg') center center / cover no-repeat;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+}
+
+.hero-section::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: linear-gradient(135deg, rgba(92, 75, 153, 0.8), rgba(179, 165, 236, 0.8));
+  z-index: 1;
+}
+
+.hero-container {
+  position: relative;
+  z-index: 2;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: white;
+}
+
+/* ===== LOGO PROGRAMA ===== */
+.program-logo {
+  text-align: center;
+  flex: 0 0 25%;
+}
+
+.program-logo img {
+  height: 230px;
+}
+
+.program-logo h3 {
+  font-size: 28px;
+  font-weight: 700;
+  margin: 0;
+}
+
+.highlight {
+  color: #d3d1f2;
+  font-weight: 800;
+}
+
+/* ===== CONTENIDO PRINCIPAL ===== */
+.hero-content {
+  flex: 0 0 60%;
+  max-width: 80vw;
+}
+
+.hero-content h1 {
+  font-size: 42px;
+  font-weight: 700;
+  line-height: 1.2;
+  margin-bottom: 20px;
+}
+
+.hero-content p {
+  font-size: 18px;
+  line-height: 1.6;
+  margin-bottom: 30px;
+  opacity: 0.95;
+}
+
+.btn-register {
+  display: inline-block;
+  background-color: #d3d1f2;
+  color: #2e2a47;
+  font-weight: 700;
+  font-size: 18px;
+  padding: 15px 40px;
+  border-radius: 50px;
+  text-decoration: none;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(92, 75, 153, 0.3);
+}
+
+.btn-register:hover {
+  background-color: white;
+  color: #5c4b99;
+  transform: translateY(-3px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 992px) {
+  .hero-container {
+    flex-direction: column;
+    text-align: center;
+    padding: 60px 20px;
+  }
+  .program-logo, .hero-content {
+    flex: none;
+    max-width: 100%;
+  }
+  .program-logo {
+    margin-bottom: 30px;
+  }
+  .hero-content h1 {
+    font-size: 36px;
+  }
+}
+
+@media (max-width: 576px) {
+  .hero-content h1 {
+    font-size: 28px;
+  }
+  .btn-register {
+    padding: 12px 30px;
+    font-size: 16px;
+  }
+}
